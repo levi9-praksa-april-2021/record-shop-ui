@@ -4,13 +4,18 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import {HttpClientModule} from '@angular/common/http';
+import { RecordsComponent } from './records/records.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RecordsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
