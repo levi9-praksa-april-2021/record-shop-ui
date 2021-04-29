@@ -23,7 +23,7 @@ export class AppComponent {
 
   login() {
     window.location.href =
-      `http://localhost:9000/oauth2/authorize?response_type=code&scope=openid%20catalog.read%20cart.write&client_id=${this._service.clientId}&redirect_uri=${this._service.redirectUri}`;
+      `http://localhost:62701/oauth2/authorize?response_type=code&scope=openid%20catalog.read%20cart.write&client_id=${this._service.clientId}&redirect_uri=${this._service.redirectUri}`;
     }
 
   logout() {

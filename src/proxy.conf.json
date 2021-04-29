@@ -1,11 +1,11 @@
 {
   "/oauth2/*": {
-      "target": "http://localhost:8080",
+      "target": "http://localhost:62701",
       "secure": false,
       "logLevel": "debug"
   },
   "/api/*": {
-      "target": "http://localhost:8080",
+      "target": "http://localhost:62701",
       "secure": false,
       "logLevel": "debug"
   }
