@@ -1,0 +1,98 @@
+<div class="p-grid p-nogutter">
+  <div class="card p-col-8">
+    <p-dataView #dv [value]="records" [paginator]="true" [rows]="6" filterBy="title" layout="grid">
+        <ng-template pTemplate="header">
+            <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+                <!-- <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price" (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown> -->
+                <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+                    <i class="pi pi-search"></i>
+                    <input type="search" pInputText placeholder="Search by Title" (input)="dv.filter($event.target.value)">
+                </span>
+                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            </div>
+        </ng-template>
+        <ng-template let-record pTemplate="listItem">
+            <div class="p-col-12">
+                <div class="product-list-item">
+                    <img [src]="'assets/' + record.id % 2 + '.jpg'" [alt]="record.title"/>
+                    <div class="product-list-detail">
+                        <div class="product-name">{{record.title}}</div>
+                        <div class="product-description">{{record.artists | artistList }}</div>
+                        <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{record.genres | genreList }}</span>
+                    </div>
+                    <div class="product-list-action">
+                        <span class="product-price">${{record.price}}</span>
+                        <p-button (click)="addToCart(record)" icon="pi pi-shopping-cart" label="Add to Cart" [disabled]="record.stock === 0"></p-button>
+                        <span [class]="'product-badge status-' + record.stock === 0 ? 'OUTOFSTOCK': 'INSTOCK'">{{record.stock === 0 ? 'OUT OF STOCK': 'IN STOCK'}}</span>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template let-record pTemplate="gridItem">
+            <div class="p-col-12 p-md-4">
+                <div class="product-grid-item card">
+                    <div class="product-grid-item-top">
+                        <div>
+                            <i class="pi pi-tag product-category-icon"></i>
+                            <span class="product-category">{{record.genres | genreList }}</span>
+                        </div>
+                        <span [class]="'product-badge status-' + record.stock === 0 ? 'outofstock': 'instock'">{{record.stock === 0 ? 'OUT OF STOCK': 'IN STOCK'}}</span>
+                    </div>
+                    <div class="product-grid-item-content">
+                      <img [src]="'assets/' + record.id % 2 + '.jpg'" [alt]="record.title"/>
+                        <div class="product-name">{{record.title}}</div>
+                        <div class="product-description">{{record.artists | artistList }}</div>
+                    </div>
+                    <div class="product-grid-item-bottom">
+                        <span class="product-price">${{record.price}}</span>
+                        <p-button (click)="addToCart(record)" icon="pi pi-shopping-cart" [disabled]="record.stock === 0"></p-button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
+  </div>
+  <div class="card p-col-4">
+    <h1>Cart</h1>
+    <p-dataView #dv1 [value]="cart" [paginator]="true" [rows]="5" filterBy="title" layout="list">
+      <ng-template pTemplate="header">
+          <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+              <!-- <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price" (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown> -->
+              <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+                  <i class="pi pi-search"></i>
+                  <input type="search" pInputText placeholder="Search by Title" (input)="dv1.filter($event.target.value)">
+              </span>
+              <div>Total: ${{cartTotal.toFixed(2)}}</div>
+              <p-button icon="pi pi-shopping-cart" label="Buy now" [disabled]="cart.length === 0"></p-button>
+              <button (click)="clearCart()" pButton icon="pi pi-times" class="p-button p-button-danger" label="Clear cart" [disabled]="cart.length === 0"></button>
+          </div>
+      </ng-template>
+      <ng-template let-cartItem pTemplate="listItem">
+          <div class="p-col-12">
+              <div class="product-list-item">
+                  <div class="product-list-detail">
+                      <div class="product-name">{{cartItem.title}}</div>
+                      <div class="product-description">{{cartItem.artists}}</div>
+                  </div>
+                  <div class="product-list-action">
+                      <button (click)="removeFromCart(cartItem.id)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
+                      <span class="product-price">${{cartItem.price * cartItem.quantity}}</span>
+                      <span>
+                        <button
+                          (click)="decreaseQuantity(cartItem.id)"
+                          [disabled]="cartItem.quantity === 1"
+                          pButton
+                          pRipple
+                          type="button"
+                          icon="pi pi-minus"
+                          class="p-button-rounded p-button-text"></button>
+                        <span style="padding-bottom:10px">{{cartItem.quantity}}</span>
+                        <button (click)="increaseQuantity(cartItem.id)" pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-text"></button>
+                      </span>
+                  </div>
+              </div>
+          </div>
+      </ng-template>
+  </p-dataView>
+  </div>
+</div>

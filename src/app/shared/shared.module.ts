@@ -17,9 +17,11 @@ import {InputTextModule} from 'primeng/inputtext';
 import {DataViewModule} from 'primeng/dataview';
 import {AccordionModule} from 'primeng/accordion';
 import { ConfirmationService } from 'primeng/api';
+import { ArtistListPipe } from './pipes/artist-list.pipe';
+import { GenreListPipe } from './pipes/genre-list.pipe';
 
 @NgModule({
-  declarations: [],
+  declarations: [ArtistListPipe, GenreListPipe],
   imports: [
     CommonModule,
     FormsModule,
@@ -40,6 +42,8 @@ import { ConfirmationService } from 'primeng/api';
     AccordionModule
   ],
   exports: [
+        ArtistListPipe,
+        GenreListPipe,
         FormsModule,
         ReactiveFormsModule,
         ButtonModule,
@@ -58,7 +62,9 @@ import { ConfirmationService } from 'primeng/api';
         AccordionModule
   ],
   providers: [
-    ConfirmationService
+    ConfirmationService,
+    ArtistListPipe,
+    GenreListPipe
   ]
 })
 export class SharedModule { }
