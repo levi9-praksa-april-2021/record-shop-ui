@@ -69,5 +69,4 @@ export class AddArtistComponent implements OnInit {
     return 'Name is required!';
   }
 
-
 }

@@ -11,6 +11,10 @@ const routes: Routes = [
     path: 'genres',
     loadChildren: () => import('./genres/genres.module').then(m => m.GenresModule),
   },
+  {
+    path: 'records',
+    loadChildren: () => import('./records/records.module').then(m => m.RecordsModule),
+  },
  { path: '**', redirectTo: '' }
 ];
 

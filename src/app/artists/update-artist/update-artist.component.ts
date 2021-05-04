@@ -41,10 +41,10 @@ export class UpdateArtistComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.updateCategory();
+    this.updateArtist();
   }
 
-  updateCategory(): void {
+  updateArtist(): void {
     const updatedArtist: Artist = { id: this.artist.id, firstName: this.firstName, lastName: this.lastName };
     this.artistService.updateArtist(updatedArtist)
       .subscribe(
@@ -57,12 +57,17 @@ export class UpdateArtistComponent implements OnInit {
   get f(): any { return this.updateForm.controls; }
 
   invalidFormInputs(): boolean {
-    if (this.f.firstName.value === '' || this.f.firstName.value === null || this.areFirstNamesSame()) {
+    if (this.f.firstName.value === '' || this.f.firstName.value === null) {
       return true;
     }
-    if (this.f.lastName.value === '' || this.f.lastName.value === null || this.areLastNamesSame()) {
+    if (this.f.lastName.value === '' || this.f.lastName.value === null) {
       return true;
     }
+
+    if (this.areFirstNamesSame() && this.areLastNamesSame()) {
+      return true;
+    }
+
     return false;
   }
 

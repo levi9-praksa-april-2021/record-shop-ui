@@ -1,0 +1,63 @@
+<form id="update-record-form" [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+    <div class="p-grid p-px-6 form-group">
+      <div class="p-px-5"></div>
+      <span class="p-field p-col p-mt-4 p-grid">
+        <label class="p-justify-left p-col-2">
+          Title:
+        </label>
+        <div>
+          <input id="update-record-input" type="title" [(ngModel)]="title" autocomplete="off" pInputText formControlName="title" class="form-control "
+            [ngClass]="{ 'is-invalid': submitted && f.title.errors}">
+        </div>
+      </span>
+      <span class="p-field p-col p-mt-4 p-grid">
+        <label class="p-justify-left p-col-2">
+          Album:
+        </label>
+        <div>
+          <input id="update-record-input" type="album" [(ngModel)]="album" autocomplete="off" pInputText formControlName="album" class="form-control "
+            [ngClass]="{ 'is-invalid': submitted && f.album.errors}">
+        </div>
+      </span>
+      <span class="p-field p-col p-mt-4 p-grid">
+        <label class="p-justify-left p-col-2">
+          Price:
+        </label>
+        <div>
+          <input id="update-record-input" type="price" [(ngModel)]="price" autocomplete="off" pInputText formControlName="price" class="form-control "
+            [ngClass]="{ 'is-invalid': submitted && f.price.errors}">
+        </div>
+      </span>
+      <span class="p-field p-col p-mt-4 p-grid">
+        <label class="p-justify-left p-col-2">
+          Stock:
+        </label>
+        <div>
+          <input id="update-record-input" type="stock" [(ngModel)]="stock" autocomplete="off" pInputText formControlName="stock" class="form-control "
+            [ngClass]="{ 'is-invalid': submitted && f.stock.errors}">
+        </div>
+      </span>
+
+      <span class="p-field p-col p-mt-4 p-grid">
+        <label class="p-justify-left p-col-2">
+          Artists:
+        </label>
+        <div>
+          <p-multiSelect [options]="artists" [(ngModel)]="selectedArtists" formControlName="selectedArtists" optionLabel="firstName"></p-multiSelect>
+        </div>
+      </span>
+
+      <span class="p-field p-col p-mt-4 p-grid">
+        <label class="p-justify-left p-col-2">
+          Genres:
+        </label>
+        <div>
+          <p-multiSelect [options]="genres" [(ngModel)]="selectedGenres" formControlName="selectedGenres" optionLabel="name"></p-multiSelect>
+        </div>
+      </span>
+
+    </div>
+    <div class="p-grid p-px-5 p-mt-6 p-justify-center">
+      <button id="update-record-button" [disabled]="invalidFormInputs()" type="submit" class="p-button" label="Update" pButton></button>
+    </div>
+</form>

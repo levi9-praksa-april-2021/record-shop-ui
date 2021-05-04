@@ -18,7 +18,7 @@ import {DataViewModule} from 'primeng/dataview';
 import {AccordionModule} from 'primeng/accordion';
 import { ConfirmationService } from 'primeng/api';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { CoreModule } from '../core/core.module';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @NgModule({
   declarations: [],
@@ -40,7 +40,8 @@ import { CoreModule } from '../core/core.module';
     InputTextModule,
     DataViewModule,
     AccordionModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MultiSelectModule,
   ],
   exports: [
         FormsModule,
@@ -59,7 +60,8 @@ import { CoreModule } from '../core/core.module';
         InputTextModule,
         DataViewModule,
         AccordionModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        MultiSelectModule,
   ],
   providers: [
     ConfirmationService
