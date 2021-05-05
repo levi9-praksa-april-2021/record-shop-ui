@@ -5,8 +5,12 @@
       "logLevel": "debug"
   },
   "/api/*": {
-      "target": "http://localhost:62701",
+      "target": "http://localhost:8080",
+      "pathRewrite": {
+        "^/api": ""
+      },
       "secure": false,
-      "logLevel": "debug"
+      "logLevel": "debug",
+      "headers": {"Authorization": "Bearer eyJraWQiOiIwZTAxNzU5Yi0zZDI3LTQzNTctOThhMS00YmZiMDZjYjRkMGEiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImF1ZCI6InJlY29yZC1zaG9wLWNsaWVudCIsIm5iZiI6MTYyMDE1ODA0MSwic2NvcGUiOlsiY2F0YWxvZy5yZWFkIiwiY2FydC53cml0ZSJdLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaXNzIjoiaHR0cDpcL1wvMTI3LjAuMC4xOjkwMDAiLCJleHAiOjE2MjAyNDQ0NDEsImlhdCI6MTYyMDE1ODA0MSwianRpIjoiZGQ1MGYzZWYtNzg4ZC00YmI3LWFiY2EtMjJlMDM0MWVjZTcyIn0.Whvd52PldN0F7_xSbcNNu9Oa3z-p2we_lwKPnCOTxkUrEC7sXbmw2oVvj6wgdInpgv8si216a_Ek7ss3hgpBAMPAqCBFRqJ9YwPkS4MWaqUIiKNN7JGbL8-cuaF5mivIIfGKEF36m8REGQqa-F2Pr1jkn6t6Xc5awthischEjRVHNv72MOGoxRHXpkRWz3Kng5M3XeOuC9Jgktp3R9epWdgf5hWBgvIzsU5vaQ36H67zkshlBZJZctRmN5Os0lz0TIHCRWdfDpvudNtTnmelcXgW-rIux8FkOOi2LYfKNTv-BuDeDIlzxwNC2mhssf95z-6zYvS4o1VUiAgwIlxGlg"}
   }
 }

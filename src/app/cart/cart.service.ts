@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { CartItem } from '../core/model/cart-item';
 import { Order } from '../core/model/order';
 import { OrderRequest } from '../core/model/order-request';
@@ -11,6 +12,8 @@ import { ArtistListPipe } from '../shared/pipes/artist-list.pipe';
   providedIn: 'root'
 })
 export class CartService {
+  private ordersUrl: string = '/api/orders';
+
   private cartItems: CartItem[];
   private cartSubject: BehaviorSubject<CartItem[]>;
   public cart: Observable<CartItem[]>;
@@ -41,7 +44,11 @@ export class CartService {
         };
       })
     };
-    //return this.http.post<void>(`api/orders/idk`, request);
+    return this.http.post<Order>(this.ordersUrl, request).pipe(
+      tap(order => {
+        this.clearCart();
+      })
+    );
 
     const order: Order = {
       id: 1,
@@ -54,6 +61,7 @@ export class CartService {
       }),
       priceSum: this.cartItems.map(item => item.quantity * item.price).reduce((accumulator, current) => accumulator + current, 0.0)
     };
+    this.clearCart();
     return of(order);
   }
 
@@ -102,3 +110,4 @@ export class CartService {
     this.cartSubject.next(this.cartItems);
   }
 }
+

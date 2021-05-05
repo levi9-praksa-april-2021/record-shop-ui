@@ -1,0 +1,20 @@
+<p-dataView #dv1 [value]="order.items"layout="list">
+  <ng-template pTemplate="header">
+      <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+          <!-- <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price" (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown> -->
+          <div>Total: ${{order.priceSum.toFixed(2)}}</div>
+      </div>
+  </ng-template>
+  <ng-template let-orderItem pTemplate="listItem">
+      <div class="p-col-12">
+          <div class="product-list-item">
+              <div class="product-list-detail">
+                  <div class="product-name">{{orderItem.recordId}}</div>
+              </div>
+              <div class="product-list-action">
+                  <span class="product-price">${{orderItem.price}}</span>
+              </div>
+          </div>
+      </div>
+  </ng-template>
+</p-dataView>

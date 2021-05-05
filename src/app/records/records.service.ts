@@ -1,12 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { Record } from 'src/app/core/model/record';
+import { Record, Records } from 'src/app/core/model/record';
+import { RecordsSearch } from './records-search';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecordsService {
+  private recordsUrl: string = '/api/records';
 
   mockRecords: Record[] = [
     {
@@ -54,9 +57,25 @@ export class RecordsService {
     }
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getRecords(): Observable<Record[]> {
-    return of(this.mockRecords.concat(this.mockRecords).concat(this.mockRecords));
+  // getRecords(): Observable<Record[]> {
+  //   return of(this.mockRecords.concat(this.mockRecords).concat(this.mockRecords));
+  // }
+
+  getRecords(search: RecordsSearch): Observable<Records> {
+    let query: string = '';
+    if (search.title)
+      query += `album=ilike=${search.title};`;
+    if (search.artistFirstName)
+      query += `artists.firstName=ilike=${search.artistFirstName};`;
+    if (search.artistLastName)
+      query += `artists.lastName=ilike=${search.artistLastName};`;
+    if (search.genre)
+      query += `genres.name=ilike=${search.genre};`;
+    if (query.length)
+      query = '?filter=' + query.slice(0, query.length - 1);
+
+    return this.http.get<Records>(`${this.recordsUrl}${query}`);
   }
 }

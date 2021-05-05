@@ -4,11 +4,26 @@
         <ng-template pTemplate="header">
             <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
                 <!-- <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price" (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown> -->
+                <form [formGroup]="searchForm">
+                  <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+                      <i class="pi pi-search"></i>
+                      <input formControlName="title" type="text" pInputText placeholder="Search by Title">
+                  </span>
+                  <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+                    <i class="pi pi-search"></i>
+                    <input formControlName="artistFirstName" type="text" pInputText placeholder="Search by Artist First Name">
+                </span>
                 <span class="p-input-icon-left p-mb-2 p-mb-md-0">
                     <i class="pi pi-search"></i>
-                    <input type="search" pInputText placeholder="Search by Title" (input)="dv.filter($event.target.value)">
+                    <input formControlName="artistLastName" type="text" pInputText placeholder="Search by Artist Last Name">
                 </span>
-                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+                  <i class="pi pi-search"></i>
+                  <input formControlName="genre" type="text" pInputText placeholder="Search by Genre">
+                </span>
+                <p-button (click)="searchRecords()" icon="pi pi-search" label="Search"></p-button>
+              </form>
+              <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
             </div>
         </ng-template>
         <ng-template let-record pTemplate="listItem">
@@ -63,7 +78,7 @@
                   <input type="search" pInputText placeholder="Search by Title" (input)="dv1.filter($event.target.value)">
               </span>
               <div>Total: ${{cartTotal.toFixed(2)}}</div>
-              <p-button icon="pi pi-shopping-cart" label="Buy now" [disabled]="cart.length === 0"></p-button>
+              <p-button (click)="createOrder()" icon="pi pi-shopping-cart" label="Buy now" [disabled]="cart.length === 0"></p-button>
               <button (click)="clearCart()" pButton icon="pi pi-times" class="p-button p-button-danger" label="Clear cart" [disabled]="cart.length === 0"></button>
           </div>
       </ng-template>
