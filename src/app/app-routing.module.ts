@@ -15,7 +15,14 @@ const routes: Routes = [
     path: 'records',
     loadChildren: () => import('./records/records.module').then(m => m.RecordsModule),
   },
- { path: '**', redirectTo: '' }
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: '**',
+    redirectTo: ''
+  }
 ];
 
 @NgModule({

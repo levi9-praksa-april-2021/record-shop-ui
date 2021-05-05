@@ -25,8 +25,7 @@
           id="records-table"
           #dt
           *ngIf="records"
-          [value]="records"
-          [editable]="true" [responsive]="true"
+          [value]="records" [responsive]="true"
           styleClass="p-datatable-recordsPage p-datatable-gridlines"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
           [globalFilterFields]="['name']"

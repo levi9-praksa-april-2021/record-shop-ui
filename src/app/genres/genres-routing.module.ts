@@ -10,7 +10,7 @@ const routes: Routes = [
     component: AddGenreComponent
   },
   {
-    path: 'table',
+    path: '',
     component: GenreTableComponent
   },
 ];

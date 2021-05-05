@@ -11,7 +11,7 @@ const routes: Routes = [
     component: AddArtistComponent
   },
   {
-    path: 'table',
+    path: '',
     component: ArtistTableComponent
   },
 ];

@@ -11,7 +11,7 @@ const routes: Routes = [
     component: AddRecordComponent
   },
   {
-    path: 'table',
+    path: '',
     component: RecordTableComponent
   },
   {

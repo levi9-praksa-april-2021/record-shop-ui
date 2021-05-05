@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -48,24 +49,50 @@ export class HeaderComponent implements OnInit {
 
   unauthenticatedItems: MenuItem[] = [
     {
-      label: 'Log in',
-      routerLink: ['/auth/login'],
-      id: 'login-nav-link'
-    },
-    {
       label: 'Register',
       routerLink: ['/auth/register'],
       id: 'register-nav-link'
     }
   ];
-  constructor() { }
+
+  constructor(private authenticationService: AuthService) { }
 
   ngOnInit(): void {
-    this.items = this.unauthenticatedItems;
+    this.authenticationService.currentRole.subscribe(role => this.updateItems(role));
+  }
+
+  updateItems(role: string): void {
+    if (!!role) {
+      this.authenticated = true;
+      if (role === 'ROLE_ADMIN') {
+        this.items = [
+          ...this.commonItems,
+          ...this.adminItems
+        ];
+      }
+      else if (role === 'ROLE_USER') {
+        this.items = [
+          ...this.commonItems,
+          ...this.userItems
+        ];
+      }
+    }
+    else {
+      this.authenticated = false;
+      this.items = [
+        ...this.commonItems,
+        ...this.unauthenticatedItems
+      ];
+    }
+  }
+
+  login(): void {
+    window.location.href =
+      `http://localhost:9000/oauth2/authorize?response_type=code&scope=openid%20catalog.read%20cart.write%20catalog.write&client_id=${this.authenticationService.clientId}&redirect_uri=${this.authenticationService.redirectUri}`;
   }
 
   logout(): void {
-
+    this.authenticationService.logout();
   }
 
 }
