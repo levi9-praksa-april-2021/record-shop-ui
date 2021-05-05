@@ -19,6 +19,8 @@ import {AccordionModule} from 'primeng/accordion';
 import { ConfirmationService } from 'primeng/api';
 import { ArtistListPipe } from './pipes/artist-list.pipe';
 import { GenreListPipe } from './pipes/genre-list.pipe';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @NgModule({
   declarations: [ArtistListPipe, GenreListPipe],
@@ -39,7 +41,9 @@ import { GenreListPipe } from './pipes/genre-list.pipe';
     ConfirmDialogModule,
     InputTextModule,
     DataViewModule,
-    AccordionModule
+    AccordionModule,
+    FlexLayoutModule,
+    MultiSelectModule,
   ],
   exports: [
         ArtistListPipe,
@@ -59,7 +63,9 @@ import { GenreListPipe } from './pipes/genre-list.pipe';
         ConfirmDialogModule,
         InputTextModule,
         DataViewModule,
-        AccordionModule
+        AccordionModule,
+        FlexLayoutModule,
+        MultiSelectModule,
   ],
   providers: [
     ConfirmationService,

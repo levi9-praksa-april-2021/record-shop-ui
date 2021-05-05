@@ -1,0 +1,77 @@
+<div class="p-grid p-mt-6 p-justify-center centered-grid"></div>
+<div class="p-grid p-mt-6 p-justify-center centered-grid"></div>
+<div class="p-grid p-mt-6 p-justify-center centered-grid">
+  <div class="p-col p-sm-5 p-md-6 p-lg-6">
+    <p-card class="flat-card">
+      <div class="p-card-header">
+        <div class="p-grid p-justify-center">
+          <h1>
+            <strong>
+              Genres
+            </strong>
+          </h1>
+        </div>
+      </div>
+      <button
+        id="show-add-genre-form-button"
+        pButton
+        type="button"
+        class="p-button-raised p-button-rounded p-justify-left"
+        label="Add genre"
+        (click)="showAddForm()"
+      ></button>
+      <div class="p-grid p-mt-3 p-justify-center centered-grid"></div>
+        <p-table
+          id="genres-table"
+          #dt 
+          *ngIf="genresPage"
+          [value]="genresPage.data"
+          [editable]="true" [responsive]="true"
+          styleClass="p-datatable-genresPage p-datatable-gridlines"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [globalFilterFields]="['name']"
+        >
+        <ng-template pTemplate="header">
+          <tr> 
+            <th>Id</th>
+            <th>Name</th>
+          </tr>
+        </ng-template>
+        <ng-template id="genres-table-item" pTemplate="body" let-genre>
+          <tr>
+            <td>
+              {{genre.id}}
+            </td>
+            <td>
+              {{genre.name}}
+            </td>
+            <td>
+              <div class="p-grid p-justify-center">
+                <button
+                  id="show-update-genre-form-button"
+                  pButton 
+                  label="Edit"
+                  icon="pi pi-pencil" 
+                  class="p-button-secondary p-button-rounded p-justify-left p-button-sm p-mr-3 p-mb-2"
+                  (click)="showUpdateForm(genre)"
+                ></button>
+                <button 
+                  id="show-delete-genre-dialog-button"
+                  pButton
+                  label="Delete"
+                  icon="pi pi-trash" 
+                  class="p-button-info p-button-rounded p-justify-right p-button-sm p-mb-2"
+                  (click)="showDeleteForm(genre.id)"
+                ></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-footer class="p-grid p-justify-center"> 
+      </p-footer>
+    </p-card>
+  </div>
+</div>
+
+<p-confirmDialog></p-confirmDialog>

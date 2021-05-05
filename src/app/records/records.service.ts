@@ -1,10 +1,16 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { Record, Records } from 'src/app/core/model/record';
 import { RecordsSearch } from './records-search';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    observe: 'response'
+  })
+};
 @Injectable({
   providedIn: 'root'
 })
@@ -78,4 +84,21 @@ export class RecordsService {
 
     return this.http.get<Records>(`${this.recordsUrl}${query}`);
   }
+
+  addRecord(record: Record): Observable<Record> {
+    const url = `${this.recordsUrl}`;
+    return this.http.post<Record>(url, record, httpOptions);
+  }
+
+  updateRecord(record: Record): Observable<Record> {
+    const url = `${this.recordsUrl}/${record.id}`;
+    return this.http.put<Record>(url, record, httpOptions);
+  }
+
+  // nema jos na beku
+  deleteRecord(id: number): Observable<{}> {
+    const url = `${this.recordsUrl}/${id}`;
+    return this.http.delete(url, httpOptions);
+  }
+
 }
