@@ -5,9 +5,9 @@ import { Artist, ArtistsPage } from 'src/app/artists/Artists';
 import { ArtistsService } from 'src/app/artists/artists.service';
 import { Genre, GenresPage } from 'src/app/genres/Genre';
 import { GenresService } from 'src/app/genres/genres.service';
-import { Record } from '../Record';
 import { RecordsService } from '../records.service';
-
+import {Record} from 'src/app/core/model/record';
+import { RecordRequest } from '../Record';
 @Component({
   selector: 'app-add-record',
   templateUrl: './add-record.component.html'
@@ -38,23 +38,17 @@ export class AddRecordComponent implements OnInit {
       album: ['', Validators.required],
       price: ['', Validators.required],
       stock: ['', Validators.required],
-      selectedArtists: ['', Validators.required],
-      selectedGenres: ['', Validators.required]
+      selectedArtists: [[], Validators.required],
+      selectedGenres: [[], Validators.required]
     });
   }
 
   readArtists(): void {
-    // this.artistsService.getArtists().subscribe(artists => this.artists = artists.data);
-
-    const artists: Artist[] = [new Artist(1, "Artist1 firstname", "Artist1 lastname"), new Artist(2, "Artist2 firstname", "Artist2 lastname")]
-    this.artists = artists;
+    this.artistsService.getArtists().subscribe(artists => this.artists = artists);
   }
 
   readGenres(): void {
-    // this.genresService.getGenres().subscribe(genres => this.genres = genres.data);
-
-    const genres: Genre[] = [new Genre(1, "genre1"), new Genre(2, "genre2")]
-    this.genres = genres;
+    this.genresService.getGenres().subscribe(genres => this.genres = genres);
   }
 
   onSubmit(): void {
@@ -68,7 +62,7 @@ export class AddRecordComponent implements OnInit {
   }
 
   addRecord(): void {
-    const record: Record = { id: null, title: this.f.title.value, album: this.f.album.value, price: this.f.price.value, stock: this.f.stock.value, genres: null, artists: this.f.selectedArtists.value};
+    const record: RecordRequest = {title: this.f.title.value, album: this.f.album.value, price: this.f.price.value, stock: this.f.stock.value, genreIds: this.f.selectedGenres.value, artistIds: this.f.selectedArtists.value};
     console.log(record)
     this.recordService.addRecord(record)
       .subscribe(

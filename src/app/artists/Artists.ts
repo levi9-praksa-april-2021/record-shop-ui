@@ -11,7 +11,7 @@ export class Artist {
 }
 
 
-  
+
 export class ArtistsPage {
   data: Artist[];
   links: Map<string, string>;

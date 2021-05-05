@@ -17,13 +17,11 @@ const httpOptions = {
 export class ArtistsService {
 
   constructor(private http: HttpClient) {}
-  artistsUrl = `${environment.apiUrl}/api/artists`;
-  private RegenerateData = new Subject<void>();
-  RegenerateData$ = this.RegenerateData.asObservable();
+  artistsUrl = `api/artists`;
 
-  getArtists(): Observable<ArtistsPage> {
+  getArtists(): Observable<Artist[]> {
     const url = `${this.artistsUrl}`;
-    return this.http.get<ArtistsPage>(url, httpOptions);
+    return this.http.get<Artist[]>(url, httpOptions);
   }
 
   addArtist(artist: Artist): Observable<void> {
@@ -36,7 +34,7 @@ export class ArtistsService {
     return this.http.put<Artist>(url, artist, httpOptions);
   }
 
-  // nema jos na beku 
+  // nema jos na beku
   deleteArtist(id: number): Observable<{}> {
     const url = `${this.artistsUrl}/${id}`;
     return this.http.delete(url, httpOptions);

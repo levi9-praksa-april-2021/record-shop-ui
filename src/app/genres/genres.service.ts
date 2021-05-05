@@ -17,13 +17,13 @@ const httpOptions = {
 export class GenresService {
 
   constructor(private http: HttpClient) {}
-  genresUrl = `${environment.apiUrl}/api/genres`;
+  genresUrl = `api/genres`;
   private RegenerateData = new Subject<void>();
   RegenerateData$ = this.RegenerateData.asObservable();
 
-  getGenres(): Observable<GenresPage> {
+  getGenres(): Observable<Genre[]> {
     const url = `${this.genresUrl}`;
-    return this.http.get<GenresPage>(url, httpOptions);
+    return this.http.get<Genre[]>(url, httpOptions);
   }
 
   addGenre(genre: Genre): Observable<void> {

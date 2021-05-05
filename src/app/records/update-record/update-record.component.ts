@@ -5,7 +5,7 @@ import { Artist } from 'src/app/artists/Artists';
 import { ArtistsService } from 'src/app/artists/artists.service';
 import { Genre } from 'src/app/genres/Genre';
 import { GenresService } from 'src/app/genres/genres.service';
-import { Record } from '../Record';
+import { RecordRequest } from '../Record';
 import { RecordsService } from '../records.service';
 
 @Component({
@@ -83,7 +83,7 @@ export class UpdateRecordComponent implements OnInit {
   }
 
   updateRecord(): void {
-    const updatedRecord: Record = { id: this.record.id, title: this.title, album: this.album, price: this.price, stock: this.stock, artists: null, genres: null };
+    const updatedRecord: RecordRequest = { id: this.record.id, title: this.title, album: this.album, price: this.price, stock: this.stock, artistIds: null, genreIds: null };
     this.recordService.updateRecord(updatedRecord)
       .subscribe(
         () => {
@@ -117,7 +117,7 @@ export class UpdateRecordComponent implements OnInit {
     if (this.areTitlesSame() && this.areAlbumsSame() && this.arePricesSame() && this.areStocksSame() && this.areArtistsSame() && this.areGenresSame()) {
       return true;
     }
-    
+
     return false;
   }
 

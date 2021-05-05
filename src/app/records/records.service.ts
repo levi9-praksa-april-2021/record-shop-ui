@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { Record, Records } from 'src/app/core/model/record';
+import { RecordRequest } from './Record';
 import { RecordsSearch } from './records-search';
 
 const httpOptions = {
@@ -85,12 +86,12 @@ export class RecordsService {
     return this.http.get<Records>(`${this.recordsUrl}${query}`);
   }
 
-  addRecord(record: Record): Observable<Record> {
+  addRecord(record: RecordRequest): Observable<Record> {
     const url = `${this.recordsUrl}`;
     return this.http.post<Record>(url, record, httpOptions);
   }
 
-  updateRecord(record: Record): Observable<Record> {
+  updateRecord(record: RecordRequest): Observable<Record> {
     const url = `${this.recordsUrl}/${record.id}`;
     return this.http.put<Record>(url, record, httpOptions);
   }

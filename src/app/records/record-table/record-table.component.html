@@ -23,16 +23,16 @@
       <div class="p-grid p-mt-3 p-justify-center centered-grid"></div>
         <p-table
           id="records-table"
-          #dt 
-          *ngIf="recordsPage"
-          [value]="recordsPage.data"
+          #dt
+          *ngIf="records"
+          [value]="records"
           [editable]="true" [responsive]="true"
           styleClass="p-datatable-recordsPage p-datatable-gridlines"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
           [globalFilterFields]="['name']"
         >
         <ng-template pTemplate="header">
-          <tr> 
+          <tr>
             <th>Id</th>
             <th>Title</th>
             <th>Album</th>
@@ -61,17 +61,17 @@
               <div class="p-grid p-justify-center">
                 <button
                   id="show-update-record-form-button"
-                  pButton 
+                  pButton
                   label="Edit"
-                  icon="pi pi-pencil" 
+                  icon="pi pi-pencil"
                   class="p-button-secondary p-button-rounded p-justify-left p-button-sm p-mr-3 p-mb-2"
                   (click)="showUpdateForm(record)"
                 ></button>
-                <button 
+                <button
                   id="show-delete-record-dialog-button"
                   pButton
                   label="Delete"
-                  icon="pi pi-trash" 
+                  icon="pi pi-trash"
                   class="p-button-info p-button-rounded p-justify-right p-button-sm p-mb-2"
                   (click)="showDeleteForm(record.id)"
                 ></button>
@@ -80,7 +80,7 @@
           </tr>
         </ng-template>
       </p-table>
-      <p-footer class="p-grid p-justify-center"> 
+      <p-footer class="p-grid p-justify-center">
       </p-footer>
     </p-card>
   </div>

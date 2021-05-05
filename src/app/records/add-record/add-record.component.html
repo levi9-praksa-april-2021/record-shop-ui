@@ -8,7 +8,7 @@
         <div>
           <input
             id="add-record-input"
-            type="title"
+            type="text"
             autocomplete="off"
             pInputText
             formControlName="title"
@@ -24,7 +24,7 @@
         <div>
           <input
             id="add-record-input"
-            type="album"
+            type="text"
             autocomplete="off"
             pInputText
             formControlName="album"
@@ -40,7 +40,7 @@
         <div>
           <input
             id="add-record-input"
-            type="price"
+            type="number"
             autocomplete="off"
             pInputText
             formControlName="price"
@@ -56,7 +56,7 @@
         <div>
           <input
             id="add-record-input"
-            type="stock"
+            type="number"
             autocomplete="off"
             pInputText
             formControlName="stock"
@@ -71,7 +71,7 @@
           Artists:
         </label>
         <div>
-          <p-multiSelect [options]="artists" formControlName="selectedArtists" optionLabel="firstName"></p-multiSelect>
+          <p-multiSelect [options]="artists" formControlName="selectedArtists" optionLabel="lastName" optionValue="id"></p-multiSelect>
         </div>
       </span>
 
@@ -80,7 +80,7 @@
           Genres:
         </label>
         <div>
-          <p-multiSelect [options]="genres" formControlName="selectedGenres" optionLabel="name"></p-multiSelect>
+          <p-multiSelect [options]="genres" formControlName="selectedGenres" optionLabel="name" optionValue="id"></p-multiSelect>
         </div>
       </span>
 

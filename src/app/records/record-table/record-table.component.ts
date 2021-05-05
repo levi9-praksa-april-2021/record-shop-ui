@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Artist } from 'src/app/artists/Artists';
-import { Genre } from 'src/app/genres/Genre';
+import { Record } from 'src/app/core/model/record';
 import { AddRecordComponent } from '../add-record/add-record.component';
-import { Record, RecordsPage } from '../Record';
 import { RecordsService } from '../records.service';
 import { UpdateRecordComponent } from '../update-record/update-record.component';
 
@@ -15,7 +13,7 @@ import { UpdateRecordComponent } from '../update-record/update-record.component'
 })
 export class RecordTableComponent implements OnInit {
 
-  recordsPage: RecordsPage;
+  records: Record[];
 
   public ref: DynamicDialogRef;
 
@@ -84,14 +82,7 @@ export class RecordTableComponent implements OnInit {
   }
 
   getRecords(): void {
-    // this.recordsService.getRecords().subscribe(records => this.recordsPage = records);
-
-    const artists: Artist[] = [new Artist(1, "Artist1 firstname", "Artist1 lastname"), new Artist(2, "Artist2 firstname", "Artist2 lastname")]
-    const genres: Genre[] = [new Genre(1, "genre1"), new Genre(2, "genre2")]
-
-    const records: Record[] = [new Record(1, "Record1 title", "Record1 album", 120, 12, artists, genres), new Record(2, "Record2 title", "Record2 album", 120, 12, artists, genres)]
-    const result: RecordsPage = new RecordsPage(records);
-    this.recordsPage = result;
+    this.recordsService.getRecords({}).subscribe(records => this.records = records.records);
   }
 
 }
