@@ -12,7 +12,7 @@ import { UpdateGenreComponent } from '../update-genre/update-genre.component';
   providers: [DialogService]
 })
 export class GenreTableComponent implements OnInit {
-  genresPage: GenresPage;
+  genres: Genre[];
 
   public ref: DynamicDialogRef;
 
@@ -80,11 +80,8 @@ export class GenreTableComponent implements OnInit {
   }
 
   getGenres(): void {
-    // this.genresService.getGenres().subscribe(genres => this.genresPage = genres);
+    this.genresService.getGenres().subscribe(genres => this.genres = genres);
 
-    const genres: Genre[] = [new Genre(1, "genre1"), new Genre(2, "genre2")]
-    const result: GenresPage = new GenresPage(genres);
-    this.genresPage = result;
   }
 
 }

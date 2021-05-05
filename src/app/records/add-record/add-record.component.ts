@@ -62,7 +62,7 @@ export class AddRecordComponent implements OnInit {
   }
 
   addRecord(): void {
-    const record: RecordRequest = {title: this.f.title.value, album: this.f.album.value, price: this.f.price.value, stock: this.f.stock.value, genreIds: this.f.selectedGenres.value, artistIds: this.f.selectedArtists.value};
+    const record: RecordRequest = {title: this.f.title.value, album: this.f.album.value, price: this.f.price.value, stock: this.f.stock.value, genreIds: this.f.selectedGenres.value, artistIds: this.f.selectedArtists.value.map((artist) => artist.id)};
     console.log(record)
     this.recordService.addRecord(record)
       .subscribe(

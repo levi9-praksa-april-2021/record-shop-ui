@@ -60,17 +60,11 @@ export class UpdateRecordComponent implements OnInit {
   }
 
   readArtists(): void {
-    // this.artistsService.getArtists().subscribe(artists => this.artists = artists.data);
-
-    const artists: Artist[] = [new Artist(1, "Artist1 firstname", "Artist1 lastname"), new Artist(2, "Artist2 firstname", "Artist2 lastname")];
-    this.artists = artists;
+    this.artistsService.getArtists().subscribe(artists => this.artists = artists);
   }
 
   readGenres(): void {
-    // this.genresService.getGenres().subscribe(genres => this.genres = genres.data);
-
-    const genres: Genre[] = [new Genre(1, "genre1"), new Genre(2, "genre2")];
-    this.genres = genres;
+    this.genresService.getGenres().subscribe(genres => this.genres = genres);
   }
 
   onSubmit(): void {

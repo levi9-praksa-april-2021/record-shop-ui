@@ -23,16 +23,16 @@
       <div class="p-grid p-mt-3 p-justify-center centered-grid"></div>
         <p-table
           id="genres-table"
-          #dt 
-          *ngIf="genresPage"
-          [value]="genresPage.data"
-          [editable]="true" [responsive]="true"
+          #dt
+          *ngIf="genres"
+          [value]="genres"
+           [responsive]="true"
           styleClass="p-datatable-genresPage p-datatable-gridlines"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
           [globalFilterFields]="['name']"
         >
         <ng-template pTemplate="header">
-          <tr> 
+          <tr>
             <th>Id</th>
             <th>Name</th>
           </tr>
@@ -49,26 +49,18 @@
               <div class="p-grid p-justify-center">
                 <button
                   id="show-update-genre-form-button"
-                  pButton 
+                  pButton
                   label="Edit"
-                  icon="pi pi-pencil" 
+                  icon="pi pi-pencil"
                   class="p-button-secondary p-button-rounded p-justify-left p-button-sm p-mr-3 p-mb-2"
                   (click)="showUpdateForm(genre)"
-                ></button>
-                <button 
-                  id="show-delete-genre-dialog-button"
-                  pButton
-                  label="Delete"
-                  icon="pi pi-trash" 
-                  class="p-button-info p-button-rounded p-justify-right p-button-sm p-mb-2"
-                  (click)="showDeleteForm(genre.id)"
                 ></button>
               </div>
             </td>
           </tr>
         </ng-template>
       </p-table>
-      <p-footer class="p-grid p-justify-center"> 
+      <p-footer class="p-grid p-justify-center">
       </p-footer>
     </p-card>
   </div>

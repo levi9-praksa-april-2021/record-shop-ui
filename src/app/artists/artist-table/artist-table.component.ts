@@ -13,7 +13,7 @@ import { UpdateArtistComponent } from '../update-artist/update-artist.component'
 })
 export class ArtistTableComponent implements OnInit {
 
-  artistsPage: ArtistsPage;
+  artists: Artist[];
 
   public ref: DynamicDialogRef;
 
@@ -81,11 +81,7 @@ export class ArtistTableComponent implements OnInit {
   }
 
   getArtists(): void {
-    // this.artistsService.getArtists().subscribe(artists => this.artistsPage = artists);
-
-    const artists: Artist[] = [new Artist(1, "Artist1 firstname", "Artist1 lastname"), new Artist(2, "Artist2 firstname", "Artist2 lastname")]
-    const result: ArtistsPage = new ArtistsPage(artists);
-    this.artistsPage = result;
+    this.artistsService.getArtists().subscribe(artists => this.artists = artists);
   }
 
 }

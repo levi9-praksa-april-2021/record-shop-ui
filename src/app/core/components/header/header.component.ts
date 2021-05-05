@@ -88,7 +88,7 @@ export class HeaderComponent implements OnInit {
 
   login(): void {
     window.location.href =
-      `http://localhost:9000/oauth2/authorize?response_type=code&scope=openid%20catalog.read%20cart.write%20catalog.write&client_id=${this.authenticationService.clientId}&redirect_uri=${this.authenticationService.redirectUri}`;
+      `http://localhost:60278/oauth2/authorize?response_type=code&scope=openid%20catalog.read%20cart.write%20catalog.write&client_id=${this.authenticationService.clientId}&redirect_uri=${this.authenticationService.redirectUri}`;
   }
 
   logout(): void {

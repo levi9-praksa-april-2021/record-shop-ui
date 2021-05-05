@@ -71,7 +71,19 @@
           Artists:
         </label>
         <div>
-          <p-multiSelect [options]="artists" formControlName="selectedArtists" optionLabel="lastName" optionValue="id"></p-multiSelect>
+          <p-multiSelect [options]="artists" formControlName="selectedArtists">
+            <ng-template let-artist pTemplate="selectedItems">
+              <div class="country-item country-item-value" *ngFor="let artist of f.selectedArtists.value">
+                  <div>{{ artist.firstName}} {{artist.lastName}}</div>
+              </div>
+              <div *ngIf="!f.selectedArtists.value || f.selectedArtists.value.length === 0" class="country-placeholder">
+                  Select Artists
+              </div>
+          </ng-template>
+            <ng-template let-artist pTemplate="item">
+              <div>{{ artist.firstName }} {{artist.lastName}}</div>
+            </ng-template>
+          </p-multiSelect>
         </div>
       </span>
 
